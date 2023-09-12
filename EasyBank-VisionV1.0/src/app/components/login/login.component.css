@@ -1,0 +1,57 @@
+p {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+    height: 100vh;
+}
+
+.logo {
+    /* margin-top: 5rem; */
+    margin-left: 16.5rem;
+}
+
+.title {
+    color: #75258B;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+.loginForm {
+    color: white;
+    width: 60%;
+}
+
+.input-login {
+    width: 15rem;
+    background-color: rgba(140, 45, 166, 0.5);
+}
+
+.form-control {
+    border: 3px transparent;
+    color: white;
+}
+
+.button-login {
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-primary {
+    font-family: 'Inter', sans-serif;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #83289d;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #591b6a;
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #83289d;
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #932faf;
+    --bs-btn-disabled-border-color: #0d6efd;
+    
+}

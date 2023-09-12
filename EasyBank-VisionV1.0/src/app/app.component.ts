@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'EasyBank-Vision';
+  activeNavBar: boolean = false;
+  
+  constructor() {
+  }
+
+  ngOnInit(): void {
+    let route = window.location.href.split('http://localhost:4200/')[1];
+    if(route == '' || route == 'login') {
+      this.activeNavBar = false;
+    }
+    else this.activeNavBar = true;
+    
+  }
+
+  
 }
