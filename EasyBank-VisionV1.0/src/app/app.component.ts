@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'EasyBank-Vision';
   activeNavBar: boolean = false;
-  
-  constructor() {
-  }
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    let route = window.location.href.split('http://localhost:4200/')[1];
-    if(route == '' || route == 'login') {
-      this.activeNavBar = false;
-    }
-    else this.activeNavBar = true;
-    
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.activeNavBar = !(event.url === '/' || event.url === '/login');
+      }
+    });
   }
-
-  
 }

@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background: #333333;
+  background: #333333;
+}
+/* body {
+    background-image: linear-gradient(to right, #75258B, yellow);  
+} */
+.error-validator {
+  color: red;
 }
