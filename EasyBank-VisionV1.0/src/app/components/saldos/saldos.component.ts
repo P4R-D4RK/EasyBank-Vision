@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 
 export class SaldosComponent {
+
+  /*
   //HTML
   const btnTodos = document.getElementById("btnTodos") as HTMLButtonElement;
   const btnIngresos = document.getElementById("btnIngresos") as HTMLButtonElement;
@@ -14,6 +16,8 @@ export class SaldosComponent {
   const balanceDiv = document.getElementById("balanceDiv");
   const smallImage = document.getElementById("smallImage") as HTMLImageElement;
 
+
+  
   // Botnoes para la página
   btnTodos.addEventListener("click", () => {
       console.log("Todos presionado");
@@ -34,4 +38,5 @@ export class SaldosComponent {
   smallImage.addEventListener("click", () => {
       console.log("Imagen pequeña presionada");
   });
+  */
 }
