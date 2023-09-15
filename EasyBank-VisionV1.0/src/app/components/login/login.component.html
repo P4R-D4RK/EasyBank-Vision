@@ -1,88 +1,84 @@
-<div class="container">
-  <div
-    style="
-      position: absolute;
-      top: 50%;
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-    "
-  >
-    <div class="d-flex justify-content-center">
-      <img
-        src="../../../assets/EBV_Logo2.png"
-        alt=""
-        width="50%"
-        class="logo"
-      />
-    </div>
-    <div class="loginForm d-flex justify-content-center mx-auto">
-      <div>
-        <p class="mt-5 title d-block">Iniciar sesión</p>
-        <form [formGroup]="userForm">
-          <div class="form-outline mt-4 d-flex justify-content-between">
-            <p class="d-inline-block me-1 input-num">
-              Número de cliente o tarjeta de crédito
-            </p>
-            <input
-              formControlName="user"
-              type="text"
-              style="height: min-content"
-              class="form-control d-inline-block input-login shadow"
-              [ngClass]="{'form-control-error': userForm.controls.user.errors?.['required'] && !userForm.controls.user.pristine}"
-            />
-            <!-- <span
-              class="error-validator"
-              *ngIf="userForm.controls.user.errors?.['required'] && !userForm.controls.user.pristine"
-              >Campo requerido</span
-            > -->
-          </div>
-          <div class="form-outline mt-4 d-flex justify-content-between">
-            <p class="d-inline-block me-1">Contraseña</p>
-            <input
-              formControlName="password"
-              type="password"
-              class="form-control d-inline-block input-login shadow"
-              [ngClass]="{'form-control-error': (userForm.controls.password.errors?.['required'] || userForm.controls.password.errors?.['minlength']) && !userForm.controls.password.pristine}"
+<div class="bg">
+  <div class="container d-flex justify-content-center">
+    <div
+    >
+      <div class="d-flex justify-content-center">
+        <img
+          src="../../../assets/EBV_Logo2.png"
+          alt=""
+          width="50%"
+          class="logo"
+        />
+      </div>
+      <div class="loginForm d-flex justify-content-center mx-auto">
+        <div>
+          <p class="mt-5 title d-block">Iniciar sesión</p>
+          <form [formGroup]="userForm">
+            <div class="form-outline mt-4 d-flex justify-content-between">
+              <p class="d-inline-block me-1 input-num">
+                Número de cliente o tarjeta de crédito
+              </p>
+              <input
+                formControlName="user"
+                type="text"
+                style="height: min-content"
+                class="form-control d-inline-block input-login shadow"
+                [ngClass]="{'form-control-error': userForm.controls.user.errors?.['required'] && !userForm.controls.user.pristine}"
               />
-            <!-- <span
-              class="error-validator"
-              *ngIf="userForm.controls.password.errors?.['required'] && !userForm.controls.password.pristine; else minLengthError "
-              >Campo requerido</span
-            >
-            <ng-template #minLengthError>
-              <span
-                *ngIf="!userForm.controls.password.pristine && userForm.controls.password.errors?.['minlength']"
+              <!-- <span
                 class="error-validator"
-                >Mínimo 8 carácteres</span
-              >
-            </ng-template> -->
+                *ngIf="userForm.controls.user.errors?.['required'] && !userForm.controls.user.pristine"
+                >Campo requerido</span
+                > -->
+            </div>
+            <div class="form-outline mt-4 d-flex justify-content-between">
+              <p class="d-inline-block me-1">Contraseña</p>
+              <input
+                formControlName="password"
+                type="password"
+                class="form-control d-inline-block input-login shadow"
+                [ngClass]="{'form-control-error': (userForm.controls.password.errors?.['required'] || userForm.controls.password.errors?.['minlength']) && !userForm.controls.password.pristine}"
+              />
+              <!-- <span
+                  class="error-validator"
+                  *ngIf="userForm.controls.password.errors?.['required'] && !userForm.controls.password.pristine; else minLengthError "
+                  >Campo requerido</span
+                  >
+                  <ng-template #minLengthError>
+                    <span
+                    *ngIf="!userForm.controls.password.pristine && userForm.controls.password.errors?.['minlength']"
+                    class="error-validator"
+                    >Mínimo 8 carácteres</span
+                    >
+                  </ng-template> -->
+            </div>
+          </form>
+          <div class="d-flex justify-content-end mt-5">
+            <button
+              type="button"
+              class="btn btn-primary button-login shadow"
+              [disabled]="!userForm.valid"
+              (click)="validateUser()"
+            >
+              Iniciar sesión
+            </button>
           </div>
-        </form>
-        <div class="d-flex justify-content-end mt-5">
-          <button
-            type="button"
-            class="btn btn-primary button-login shadow"
-            [disabled]="!userForm.valid"
-            (click)="validateUser()"
-          >
-            Iniciar sesión
-          </button>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div
-  class="form-check form-switch"
-  style="
-    position: absolute;
-    top: 92%;
-    left: 5%;
-    -ms-transform: translateY(-90%);
-    transform: translateY(-90%);
-  "
->
-  <input class="form-check-input" type="checkbox" (change)="change()" />
-  <label *ngIf="!mode">Modo simple</label>
-  <label *ngIf="mode">Modo detallado</label>
+  <div
+    class="form-check form-switch"
+    style="
+      position: absolute;
+      top: 95.5%;
+      left: 5.9%;
+      -ms-transform: translateY(-90%);
+      transform: translateY(-90%);
+    "
+  >
+    <input class="form-check-input" type="checkbox" (change)="change()" />
+    <label *ngIf="!mode">Modo simple</label>
+    <label *ngIf="mode">Modo detallado</label>
+  </div>
 </div>

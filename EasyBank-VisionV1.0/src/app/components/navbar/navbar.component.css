@@ -1,0 +1,15 @@
+.navbar {
+    height: 7rem;
+    background-color: #75258b !important;
+}
+
+.btn-outline-light {
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-disabled-border-color: transparent;
+}
+
+button {
+    font-family: "Inter", sans-serif;
+}

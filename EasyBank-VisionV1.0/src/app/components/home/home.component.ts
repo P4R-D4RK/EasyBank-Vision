@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  mode: boolean = false;
+
+  change() {
+    this.mode = !this.mode;
+  }
 }

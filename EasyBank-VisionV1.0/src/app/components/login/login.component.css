@@ -1,10 +1,16 @@
 p {
   margin: 0;
-  font-family: "Inter", sans-serif;
   font-size: 20px;
 }
 
+.bg {
+  background: #333333;
+}
+
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
 }
 
@@ -48,24 +54,6 @@ p {
 .button-login {
   font-family: "Inter", sans-serif;
   font-size: 20px;
-}
-
-.btn-primary {
-  font-family: "Inter", sans-serif;
-  --bs-btn-color: #fff;
-  --bs-btn-bg: #83289d;
-  --bs-btn-border-color: transparent;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #591b6a;
-  --bs-btn-hover-border-color: transparent;
-  --bs-btn-focus-shadow-rgb: 49, 132, 253;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #83289d;
-  --bs-btn-active-border-color: transparent;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #601f72;
-  --bs-btn-disabled-border-color: transparent;
 }
 
 .form-check {

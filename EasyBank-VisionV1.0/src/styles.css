@@ -1,10 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  background: #333333;
-}
+
 /* body {
     background-image: linear-gradient(to right, #75258B, yellow);  
 } */
 .error-validator {
   color: red;
+}
+
+p {
+  font-family: "Inter", sans-serif;
+}
+
+.btn-primary {
+  font-family: "Inter", sans-serif;
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #83289d;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #591b6a;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #83289d;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #601f72;
+  --bs-btn-disabled-border-color: transparent;
 }

@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  toHome() {
+    console.log('HOME');
+  }
 }
