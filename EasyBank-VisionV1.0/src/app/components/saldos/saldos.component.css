@@ -1,0 +1,56 @@
+body {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: #83289d;
+    padding: 20px;
+    position: relative;
+}
+
+.large-image, .small-image {
+    max-width: 100%;
+}
+
+.small-image {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 50px; 
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.title-icon {
+    margin-left: 10px;
+}
+
+.options {
+    border: 1px solid #ddd;
+    padding: 20px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr) auto;
+}
+
+.balance, .date {
+    grid-column: span 4;
+}
+
+.date-balance {
+    background-color: #eee;
+    padding: 5px;
+    margin: 5px 0;
+}

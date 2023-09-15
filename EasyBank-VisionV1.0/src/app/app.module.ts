@@ -9,13 +9,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 //Material
 import { ReactiveFormsModule } from '@angular/forms';
+import { SaldosComponent } from './components/saldos/saldos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    SaldosComponent,
   ],
   imports: [
     BrowserModule,
