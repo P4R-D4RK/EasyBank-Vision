@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a routerLink="/home">
-        <img src="../../../assets/EBV_Logo2.png" width="20%" />
-      </a>
+      <div>
+        <img src="../../../assets/EBV_Logo2.png" width="20%" routerLink="/home" class="ms-2"/>
+      </div>
       <button
         class="navbar-toggler"
         type="button"
@@ -14,7 +14,12 @@
       >
         
       </button>
-      <button class="btn btn-outline-light" style="height: 4rem; width: 4rem;">
+      <span class="user-name me-3">{{getUser().first_name + ' ' + getUser().last_name}}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="60">
+        <line x1="15" y1="0" x2="15" y2="60" style="stroke: white; stroke-width: 2.5;" />
+      </svg>
+      
+      <button class="btn btn-outline-light" style="height: 4rem; width: 4rem;" (click)="logOut()">
         <i class="bi bi-box-arrow-right" style="font-size: 1.25rem;"></i>
         Salir
       </button>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { User } from './interfaces/user-interface';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,12 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   title = 'EasyBank-Vision';
   activeNavBar: boolean = false;
-
+  user: User = {
+    first_name: '',
+    last_name: '',
+    user_number: '',
+    credit_card: '',
+  }
   constructor(private router: Router) {}
 
   ngOnInit(): void {
