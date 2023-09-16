@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 //Material
 import { ReactiveFormsModule } from '@angular/forms';
 import { SaldosComponent } from './components/saldos/saldos.component';
+import { AccountStatementsComponent } from './components/account-statements/account-statements.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SaldosComponent } from './components/saldos/saldos.component';
     LoginComponent,
     NavbarComponent,
     SaldosComponent,
+    AccountStatementsComponent
   ],
   imports: [
     BrowserModule,
