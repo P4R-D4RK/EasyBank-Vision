@@ -1,31 +1,34 @@
-<div>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Diseño Personalizado</title>
-        <link rel="saldos.component" href="saldos.component.css">
-        <script defer src="saldos.component.ts"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <img src="Images/EasyBankLogo.png" alt="Imagen grande" class="large-image">
-                <img src="Images/Salir.png.jpeg" alt="Imagen pequeña" class="small-image" id="smallImage">
-            </div>
-            <h1>Saldos y Movimientos <img src="Images/Saldos.jpeg" alt="Icono" class="title-icon"></h1>
-            <div class="options">
-                <button id="btnTodos">Todos</button>
-                <button id="btnIngresos">Ingresos</button>
-                <button id="btnEgresos">Egresos</button>
-                <div class="balance" id="balanceDiv">
-                    Saldo actual: <span>$1000.00</span>
-                </div>
-                <div class="date">
-                    Fecha:
-                    <div class="date-balance">$500.00</div>
-                    <div class="date-balance">$-300.00</div>
-                </div>
-            </div>
+<div class="container">
+    <h1>Saldos y Movimientos <img src="Images/Saldos.jpeg" alt="Icono" class="title-icon"></h1>
+    <div class="options">
+        <button
+        type="button"
+        class="btn btn-primary button-saldos shadow"
+      >
+        Todos
+      </button>
+      <button
+      type="button"
+      class="btn btn-primary button-saldos shadow"
+    >
+      Ingresos
+    </button>
+    <button
+        type="button"
+        class="btn btn-primary button-saldos shadow"
+      >
+        Egresos
+      </button>
+      <div class="container-fluid">
+            Saldos
+      </div>
+        <div class="balance" id="balanceDiv">
+            Saldo actual: <span>$1000.00</span>
         </div>
-    </body>
+        <div class="date">
+            Fecha:
+            <div class="date-balance">$500.00</div>
+            <div class="date-balance">$-300.00</div>
+        </div>
+    </div>
 </div>

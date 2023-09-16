@@ -1,22 +1,6 @@
-body {
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
-}
-
-.container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.header {
-    background-color: #83289d;
-    padding: 20px;
-    position: relative;
-}
-
 .large-image, .small-image {
     max-width: 100%;
+    
 }
 
 .small-image {
@@ -54,3 +38,9 @@ h1 {
     padding: 5px;
     margin: 5px 0;
 }
+
+.button-saldos {
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    
+  }
