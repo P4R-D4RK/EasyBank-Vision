@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  mode: boolean = false;
+
+  constructor(private authService: AuthService) { }
+
+  change() {
+    this.mode = !this.mode;
+  }
+
+  getUser() {
+    return this.authService.getUser();
+  }
 }

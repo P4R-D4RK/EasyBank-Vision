@@ -1,0 +1,28 @@
+.navbar {
+  height: 7rem;
+  background-color: #75258b !important;
+}
+
+.btn-outline-light {
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-border-color: transparent;
+}
+
+button {
+  font-family: "Inter", sans-serif;
+}
+
+.custom-focus {
+  outline: 2px solid red; /* Cambia el color del borde de enfoque aquí */
+}
+
+.user-name {
+    color: white;
+    font-family: "Inter", sans-serif;
+}
+
+img {
+    cursor: pointer;
+}
