@@ -22,6 +22,7 @@ h1 {
 }
 
 .options {
+    background-color: #D9D9D9;
     border: 1px solid #ddd;
     padding: 20px;
     display: grid;
@@ -40,7 +41,87 @@ h1 {
 }
 
 .button-saldos {
-    font-family: "Inter", sans-serif;
+    color: white;
     font-size: 20px;
-    
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+    width: 212px; 
+    height: 70px; 
+    background: rgba(117, 37, 139, 0.26); 
+    border-radius: 10px;
   }
+
+  .list-group {
+    width: 600px;
+  }
+
+.saldos-box {
+    width: 262px; 
+    height: 129px; 
+    background: #FCFAFD; 
+    border-radius: 20px; 
+    border: 1px #75258B solid;
+
+}
+
+.options {
+    border-radius: 10px;
+    display: flex;
+    gap: 20px; /* Espacio entre elementos */
+    align-items: center; /* Centra los elementos verticalmente */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en la siguiente línea si no hay espacio */
+}
+
+.balance span {
+    display: block;  /* Hace que el elemento span se comporte como un bloque */
+}
+
+.saldos-box img {
+    width: 100px; /* ajusta según tus necesidades */
+    height: 100px;
+    text-align: left;
+    padding: 20px;
+}
+
+h1 img{
+    width: 40px;
+    height: 40px;
+}
+
+h1 {
+    width: 100%; height: 100%; color: #75258B; font-size: 24px; font-family: Inter; font-weight: 700; word-wrap: break-word 
+}
+
+.saldo-actual {
+    position: relative;  /* O "absolute", según tus necesidades */
+    top: -80px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.cuadros {
+    position: relative;
+    left: 30px;
+    top: -32px;
+}
+
+.textoU {
+    position: relative;
+    left: 10px;
+    top: 1px;
+}
+
+.cantidades {
+    position: relative;
+    left: 85px;
+    top: 1px;
+}
+
+.cantidades2 {
+    position: relative;
+    left: 59px;
+    top: 1px;
+}
