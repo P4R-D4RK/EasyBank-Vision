@@ -14,7 +14,11 @@ export class AppComponent {
     first_name: '',
     last_name: '',
     user_number: '',
-    credit_card: '',
+    debid_card: {
+      dc_avaliable_balance: 0,
+      dc_number: ''
+    },
+    credit_cards: [],
   }
   constructor(private router: Router) {}
 

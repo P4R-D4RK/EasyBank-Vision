@@ -15,7 +15,11 @@ export class NavbarComponent {
     first_name: '',
     last_name: '',
     user_number: '',
-    credit_card: '',
+    debid_card: {
+      dc_avaliable_balance: 0,
+      dc_number: ''
+    },
+    credit_cards: [],
   }
 
   constructor(private router: Router, private authService: AuthService) {}
@@ -48,7 +52,7 @@ export class NavbarComponent {
           background: '#333333',
           color: '#FFFFFF',
           title: '¡Hasta pronto!',
-          text: user.first_name,
+          text: user!.first_name,
           icon: 'success',
           timer: 3000,
           showConfirmButton: false
