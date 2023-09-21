@@ -39,7 +39,7 @@ export class LoginComponent {
         background: '#333333',
         color: '#FFFFFF',
         title: 'Bienvenido',
-        text: user.first_name,
+        text: user!.first_name,
         icon: 'success',
         timer: 3000,
         showConfirmButton: false,

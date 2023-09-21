@@ -2,9 +2,6 @@ p {
   color: black;
 }
 
-button {
-  color: #75258b;
-}
 
 .side-bar {
   background-color: #d9d9d9;
@@ -15,13 +12,14 @@ button {
 
 .accounts {
   background-color: #d9d9d9;
-  width: 80%;
+  width: 90%;
   height: 35rem;
   padding: 2.5rem;
+  font-family: "Inter", sans-serif
 }
 
 .menu {
-  width: 80%;
+  width: 90%;
 }
 
 .cont {
@@ -113,10 +111,47 @@ i {
 }
 .button-purple {
     background: white;
-    box-shadow: -8px 10px 0 #771094,
+    box-shadow: -8px 10px 0 #771093,
                 0 11px 5px hsla(0, 0%, 0%, 0.5);
 }
 .button-purple:active {
     box-shadow: 0 3px 0 #8e29a7,
                 0 4px 6px hsla(0, 0%, 0%, 0.7);
+}
+
+.accordion {
+  --bs-accordion-border-color: white;
+  --bs-accordion-active-bg: white;
+}
+
+.accordion-item {
+  color: white;
+  background-color: rgba(240, 240, 240, 0.9);
+  border: 2px solid rgb(240, 240, 240);
+}
+
+h4 {
+  color: black;
+}
+
+ins {
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+}
+
+.progress, .progress-stacked {
+  --bs-progress-height: 1rem;
+  --bs-progress-font-size: 0.75rem;
+  --bs-progress-bg: rgb(210,210,210);
+  --bs-progress-border-radius: var(--bs-border-radius);
+  --bs-progress-box-shadow: var(--bs-box-shadow-inset);
+  --bs-progress-bar-color: #fff;
+  --bs-progress-bar-bg: #75258b;
+  --bs-progress-bar-transition: width 0.6s ease;
+  display: flex;
+  height: var(--bs-progress-height);
+  overflow: hidden;
+  font-size: var(--bs-progress-font-size);
+  background-color: var(--bs-progress-bg);
+  border-radius: var(--bs-progress-border-radius);
 }

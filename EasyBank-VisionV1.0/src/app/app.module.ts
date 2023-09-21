@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SaldosComponent } from './components/saldos/saldos.component';
 import { AccountStatementsComponent } from './components/account-statements/account-statements.component';
+import { CreditCardPipe } from './pipes/credit-card.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AccountStatementsComponent } from './components/account-statements/acco
     LoginComponent,
     NavbarComponent,
     SaldosComponent,
-    AccountStatementsComponent
+    AccountStatementsComponent,
+    CreditCardPipe
   ],
   imports: [
     BrowserModule,
