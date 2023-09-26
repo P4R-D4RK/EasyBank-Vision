@@ -31,6 +31,7 @@
             href="javascript:void(0)"
             class="button button-purple align-items-center d-flex flex-column mb-3"
             style="width: 9rem"
+            routerLink="/saldos"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -131,6 +132,7 @@
             href="javascript:void(0)"
             class="button button-purple align-items-center d-flex flex-column"
             style="width: 9rem"
+            routerLink="/transfers"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="72"
@@ -306,7 +308,7 @@
     </div>
   </div>
 
-  <div class="form-check form-switch">
+  <div class="form-check form-switch" style="z-index: -1;">
     <input class="form-check-input" type="checkbox" (change)="change()" />
     <label *ngIf="!mode">Modo simple</label>
     <label *ngIf="mode">Modo detallado</label>
