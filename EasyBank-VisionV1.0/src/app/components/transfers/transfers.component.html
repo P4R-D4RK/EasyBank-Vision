@@ -39,12 +39,12 @@
       <p></p>
       <p class="title-p mt-3">
         Tarjeta con terminación
-        <strong>{{ user.debid_card.dc_number | creditCard }}</strong>
+        <strong>{{ user.debit_card.dc_number | creditCard }}</strong>
       </p>
       <p></p>
       <p class="title-p mt-3 d-inline-block">
         Disponible
-        <strong>{{ user.debid_card.dc_avaliable_balance | currency }}</strong>
+        <strong>{{ user.debit_card.dc_avaliable_balance | currency }}</strong>
       </p>
       <p></p>
     </div>
@@ -54,10 +54,11 @@
         <p class="title-p">Número de cuenta o tarjeta</p>
         <input
           class="form-control d-inline-block input-login shadow"
-          type="number"
+          type="text"
           name=""
           id=""
           formControlName="destiny_account"
+          [ngClass]="{'form-control-error': (transferForm.controls.destiny_account.errors?.['required'] || transferForm.controls.destiny_account.errors?.['minlength'] || transferForm.controls.destiny_account.errors?.['maxlength'] || transferForm.controls.destiny_account.errors?.['pattern']) && !transferForm.controls.destiny_account.pristine}"
         />
         <p class="title-p">Banco: <strong>EasyBank</strong></p>
         <p class="title-p">Nombre</p>
@@ -67,6 +68,7 @@
           name=""
           id=""
           formControlName="name"
+          [ngClass]="{'form-control-error': (transferForm.controls.name.errors?.['required'] || transferForm.controls.name.errors?.['minlength'] ) && !transferForm.controls.name.pristine}"
         />
         <div>
           <p class="title-p">Cantidad</p>
@@ -76,6 +78,7 @@
                 type="number"
                 formControlName="quantity"
                 style="width: min-content;"
+                [ngClass]="{'form-control-error': (transferForm.controls.quantity.errors?.['required'] || transferForm.controls.quantity.errors?.['min']) && !transferForm.controls.quantity.pristine}"
               />
           </div>
         </div>

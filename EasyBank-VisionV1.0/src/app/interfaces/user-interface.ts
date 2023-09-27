@@ -2,12 +2,12 @@ export interface User {
     user_number: string;
     first_name: string;
     last_name: string;
-    debid_card: {
+    debit_card: {
         dc_number: string,
         dc_avaliable_balance: number;
     }
     credit_cards?: credit_card[];
-    password?: string;
+    password: string;
 }
 
 interface credit_card {

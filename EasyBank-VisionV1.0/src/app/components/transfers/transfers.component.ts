@@ -15,7 +15,7 @@ export class TransfersComponent implements OnInit {
     first_name: '',
     last_name: '',
     user_number: '',
-    debid_card: {
+    debit_card: {
       dc_avaliable_balance: 0,
       dc_number: '',
     },
@@ -26,6 +26,7 @@ export class TransfersComponent implements OnInit {
       Validators.required,
       Validators.minLength(16),
       Validators.maxLength(16),
+      Validators.pattern('^[0-9]*$')
     ]),
     name: new FormControl('', [Validators.required, Validators.minLength(8)]),
     quantity: new FormControl(0, [Validators.required, Validators.min(100)]),
@@ -46,7 +47,7 @@ export class TransfersComponent implements OnInit {
 
   transfer() {
     // console.log(this.transferForm.value);
-    if(this.transferForm.value.quantity! > this.user.debid_card.dc_avaliable_balance) {
+    if(this.transferForm.value.quantity! > this.user.debit_card.dc_avaliable_balance) {
       Swal.fire({
         background: '#333333',
         color: '#FFFFFF',

@@ -9,7 +9,7 @@ export class AuthService {
 
   users: User[] = [
     {
-      debid_card: {
+      debit_card: {
         dc_avaliable_balance: 25000,
         dc_number: '5204620124780140'
       },

@@ -45,11 +45,6 @@ p {
   border: 1px transparent;
   color: white;
 }
-.form-control-error {
-  border: 1px solid red;
-  color: white;
-}
-
 
 .button-login {
   font-family: "Inter", sans-serif;

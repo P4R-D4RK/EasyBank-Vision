@@ -15,7 +15,7 @@ export class NavbarComponent {
     first_name: '',
     last_name: '',
     user_number: '',
-    debid_card: {
+    debit_card: {
       dc_avaliable_balance: 0,
       dc_number: ''
     },

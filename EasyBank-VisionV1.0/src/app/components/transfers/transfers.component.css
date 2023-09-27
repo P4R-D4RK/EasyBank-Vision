@@ -27,10 +27,6 @@ input {
 .form-control {
   border: 1px transparent;
 }
-.form-control-error {
-  border: 1px solid red;
-  color: white;
-}
 
 button {
   font-family: "Inter", sans-serif;

@@ -28,3 +28,7 @@ p {
   --bs-btn-disabled-bg: #601f72;
   --bs-btn-disabled-border-color: transparent;
 }
+
+.form-control-error {
+  border: 1px solid red !important;
+}

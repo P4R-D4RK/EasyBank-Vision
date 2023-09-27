@@ -14,7 +14,7 @@ export class HomeComponent {
     first_name: '',
     last_name: '',
     user_number: '',
-    debid_card: {
+    debit_card: {
       dc_avaliable_balance: 0,
       dc_number: ''
     },
@@ -28,7 +28,7 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.user = this.getUser()!;
-    this.cards.push(this.user.debid_card);
+    this.cards.push(this.user.debit_card);
     this.user.credit_cards?.forEach(credit_card => this.cards.push(credit_card));
   }
 
