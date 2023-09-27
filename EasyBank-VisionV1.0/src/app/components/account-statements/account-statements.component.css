@@ -1,0 +1,82 @@
+.contenedorPrincipal {
+    font-size: 28px;
+    position: relative;
+    top: 100px;
+    padding-left: 30px;
+    color: #75258B;
+    font-family: Inter;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+.contenedorPrincipal img {
+    width: 40px;
+    height: 40px;
+}
+
+.contenedorSwitch {
+    width: 95%; 
+    height: 100%; 
+    background: #D9D9D9; 
+    border-radius: 10px;
+}
+
+.form-check-input {
+    display: none; /* oculta el radio original */
+}
+
+.form-check-input + .form-check-label {
+    position: relative;
+    padding-left: 45px; /* espacio para el diseño personalizado del radio */
+    font-size: 26px; /* tamaño de la fuente de la etiqueta */
+    color: black; /* color de la etiqueta */
+    cursor: pointer;
+}
+
+.form-check-input + .form-check-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px; /* tamaño del diseño personalizado del radio */
+    height: 30px;
+    border: 2px solid white; /* color del borde del diseño personalizado del radio */
+    background-color: white;
+    border-radius: 50%; /* hace que sea circular */
+}
+
+.fecha {
+    color: #585662;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 700;
+    word-wrap: break-word;
+    padding-left: 45px;
+}
+
+.form-check-input:checked + .form-check-label::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px; /* tamaño del punto interno cuando está seleccionado */
+    height: 22px;
+    background-color: #75258B; /* color del punto interno cuando está seleccionado */
+    border-radius: 50%; /* hace que sea circular */
+}
+
+.consultar {
+    width: 299px; 
+    height: 66px; 
+    background: #75258B; 
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 700;
+    word-wrap: break-word;
+    position: relative;
+    left: 900px;
+}
