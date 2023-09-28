@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './schemas/user.schema';
+import { User, credit_card } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -30,5 +30,18 @@ export class UserService {
 
   async deleteOne(id: string) {
     return this.userModel.findByIdAndDelete(id).exec();
+  }
+  async findByUserNumberOrCC(userOrCCNumber: string) {
+    return this.userModel
+      .findOne(
+        {
+          $or: [
+            { 'user_number': userOrCCNumber },
+            { "credit_cards.cc_number": userOrCCNumber }
+          ]
+        },
+        { password: 1, first_name: 1, last_name: 1 },
+      )
+      .exec();
   }
 }

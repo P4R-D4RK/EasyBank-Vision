@@ -28,8 +28,8 @@ export class User {
   @Prop()
   credit_cards?: credit_card[];
   
-  @Prop()
-  password?: string;
+  @Prop({ required: true })
+  password: string;
 }
 
 

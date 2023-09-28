@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from 'src/app/interfaces/user-interface';
+import { UserLogin } from 'src/app/interfaces/userLogin.interface';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,16 +10,11 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomeComponent {
 
   mode: boolean = false;
-  user: User = {
+  user: UserLogin = {
+    _id: '',
     first_name: '',
     last_name: '',
-    user_number: '',
-    debit_card: {
-      dc_avaliable_balance: 0,
-      dc_number: ''
-    },
-    credit_cards: []
-  }
+  };
 
   cards: any[] = [];
   openAccordion: any[] = [];
@@ -28,8 +23,8 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.user = this.getUser()!;
-    this.cards.push(this.user.debit_card);
-    this.user.credit_cards?.forEach(credit_card => this.cards.push(credit_card));
+    // this.cards.push(this.user.debit_card);
+    // this.user.credit_cards?.forEach(credit_card => this.cards.push(credit_card));
   }
 
   change() {

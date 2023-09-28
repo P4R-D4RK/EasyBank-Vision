@@ -31,8 +31,8 @@ export class LoginComponent {
     this.mode = !this.mode;
   }
 
-  validateUser() {
-    const foundUser = this.authService.login(this.userForm.value.user!, this.userForm.value.password!)
+  async validateUser() {
+    const foundUser = await this.authService.login(this.userForm.value.user!, this.userForm.value.password!)
     if (foundUser) {
       const user = this.getUser();
       Swal.fire({

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/interfaces/user-interface';
+import { UserLogin } from 'src/app/interfaces/userLogin.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -11,16 +11,11 @@ import Swal from 'sweetalert2';
 })
 export class NavbarComponent {
 
-  @Input() user: User = {
+  @Input() user: UserLogin = {
+    _id: '',
     first_name: '',
     last_name: '',
-    user_number: '',
-    debit_card: {
-      dc_avaliable_balance: 0,
-      dc_number: ''
-    },
-    credit_cards: [],
-  }
+  };
 
   constructor(private router: Router, private authService: AuthService) {}
 
