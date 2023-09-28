@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user-interface';
+import { HttpClient } from '@angular/common/http';
+import { _URL_USER } from '../config/config';
 
 @Injectable({
   providedIn: 'root',
@@ -36,18 +38,36 @@ export class AuthService {
     return this.user;
   }
 
-  constructor() {
+  constructor(private http: HttpClient) {
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       this.user = JSON.parse(savedUser);
     }
   }
 
+  // async login(userId: string, password: string): Promise<any> {
+  //   const data = await new Promise<any>((resolve, reject) => {
+  //     this.http
+  //       .post<any>(
+  //         `${_URL_USER}/${userId}`,
+          
+  //       )
+  //       .subscribe({
+  //         next: (value) => {
+  //           if (value.error) reject(value.error);
+  //           else if (value.data) resolve(value.data);
+  //         },
+  //         error: (err) => reject(err),
+  //       });
+  //   });
+  //   return data ?? [];
+  // }
+
   login(userId: string, password: string) {
     const foundUser = this.users.find(
       (user) =>
-        (user.user_number == userId ||
-          user.credit_cards?.find((value) => value.cc_number == userId)) &&
+      (user.user_number == userId ||
+        user.credit_cards?.find((value) => value.cc_number == userId)) &&
         user.password == password
     );
     if (foundUser) {
@@ -57,4 +77,5 @@ export class AuthService {
 
     return false;
   }
+
 }

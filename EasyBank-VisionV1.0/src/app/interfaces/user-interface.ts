@@ -7,7 +7,7 @@ export interface User {
         dc_avaliable_balance: number;
     }
     credit_cards?: credit_card[];
-    password: string;
+    password?: string;
 }
 
 interface credit_card {
