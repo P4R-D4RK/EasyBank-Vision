@@ -9,10 +9,8 @@ export class AuthService {
   ) {}
 
   async login(logInDto: LogInDto) {
-    console.log(logInDto)
     if(logInDto.user_number_or_cc) {
       const user = await this.userService.findByUserNumberOrCC(logInDto.user_number_or_cc);
-      console.log(user)
       if (user) {
         if (logInDto.password == user.password) {
           return user;

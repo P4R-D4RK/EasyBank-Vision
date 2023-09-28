@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { _URL_AUTH, _URL_USER } from '../config/config';
+import { _URL_AUTH } from '../config/config';
 import { UserLogin } from '../interfaces/userLogin.interface';
 
 @Injectable({
@@ -41,7 +41,7 @@ export class AuthService {
         next: (value) => {
           if (value.error) reject(value.error);
           else if (value.data) {
-            console.log(value.data)
+            console.log(value.data);
             this.setUser(value.data);
             resolve(value.data);
           }

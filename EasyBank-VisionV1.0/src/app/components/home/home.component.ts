@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserLogin } from 'src/app/interfaces/userLogin.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -19,12 +20,13 @@ export class HomeComponent {
   cards: any[] = [];
   openAccordion: any[] = [];
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userService: UserService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<any> {
     this.user = this.getUser()!;
-    // this.cards.push(this.user.debit_card);
-    // this.user.credit_cards?.forEach(credit_card => this.cards.push(credit_card));
+    const userData = await this.userService.getUserData(this.user._id);
+    this.cards.push(userData.debit_card);
+    userData.credit_cards?.forEach((credit_card: any) => this.cards.push(credit_card));
   }
 
   change() {
@@ -34,4 +36,5 @@ export class HomeComponent {
   getUser() {
     return this.authService.getUser();
   }
+
 }

@@ -7,7 +7,7 @@ import {
   Param,
   Get,
   Delete,
-  NotFoundException
+  NotFoundException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -45,7 +45,9 @@ export class UserController {
     if (!user) {
       throw new NotFoundException(`User with ID ${id} not found`);
     }
-    return user;
+    return {
+      data: user,
+    };
   }
 
   @Delete(':id')
