@@ -4,12 +4,14 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { MovementsModule } from './modules/movements/movements.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://127.0.0.1:27017/easybank-vision'),
     UsersModule,
-    AuthModule
+    AuthModule,
+    MovementsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User, credit_card } from './schemas/user.schema';
+import { User } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -25,7 +25,7 @@ export class UserService {
   }
 
   async findOne(id: string) {
-    return this.userModel.findById(id, {'_id': 0}).exec();
+    return this.userModel.findById(id, { _id: 0 }).exec();
   }
 
   async deleteOne(id: string) {
@@ -36,12 +36,31 @@ export class UserService {
       .findOne(
         {
           $or: [
-            { 'user_number': userOrCCNumber },
-            { "credit_cards.cc_number": userOrCCNumber }
-          ]
+            { user_number: userOrCCNumber },
+            { 'credit_cards.cc_number': userOrCCNumber },
+          ],
         },
         { password: 1, first_name: 1, last_name: 1 },
       )
+      .exec();
+  }
+  async updateDebitCardBalance(dc_number: string, ammount: number) {
+    return this.userModel
+      .findOneAndUpdate(
+        {
+          'debit_card.dc_number': dc_number,
+        },
+        [
+          {
+            $set: {
+              'debit_card.dc_avaliable_balance': {
+                $subtract: ['$debit_card.dc_avaliable_balance', ammount],
+              },
+            },
+          },
+        ],
+      )
+      .lean()
       .exec();
   }
 }

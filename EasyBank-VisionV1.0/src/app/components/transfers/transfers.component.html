@@ -78,6 +78,7 @@
                 type="number"
                 formControlName="quantity"
                 style="width: min-content;"
+                min="100"
                 [ngClass]="{'form-control-error': (transferForm.controls.quantity.errors?.['required'] || transferForm.controls.quantity.errors?.['min'] || transferForm.controls.quantity.errors?.['max']) && !transferForm.controls.quantity.pristine}"
               />
           </div>
@@ -96,7 +97,7 @@
         type="button"
         class="btn btn-primary button-login shadow mt-3"
         [disabled]="!transferForm.valid"
-        (click)="transfer()"
+        (click)="confirmTransfer()"
       >
         Confirmar
       </button>

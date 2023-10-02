@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserLogin } from 'src/app/interfaces/userLogin.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { MovementsService } from 'src/app/services/movements.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -41,7 +42,8 @@ export class TransfersComponent implements OnInit {
   });
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private movementsService: MovementsService
   ) {}
 
   async ngOnInit(): Promise<any> {
@@ -60,7 +62,7 @@ export class TransfersComponent implements OnInit {
     this.mode = !this.mode;
   }
 
-  transfer() {
+  confirmTransfer() {
     console.log(this.transferForm.value);
     Swal.fire({
       background: '#333333',
@@ -94,19 +96,31 @@ export class TransfersComponent implements OnInit {
         confirmButton: 'custom-focus',
       },
     }).then((result) => {
-      const user = this.getUser();
-      console.log(user);
+      // const user = this.getUser();
+      // console.log(user);
       if (result.isConfirmed) {
-        Swal.fire({
-          background: '#333333',
-          color: '#FFFFFF',
-          title: '¡Transferencia exitosa!',
-          icon: 'success',
-          timer: 3000,
-          showConfirmButton: false,
-        });
-        this.transferForm.reset();
+        this.transfer();
       }
     });
+  }
+
+  async transfer(): Promise<any> {
+    const userInfo = await this.movementsService.transfer({
+      origin: this.userData.debit_card.dc_number,
+      destination: this.transferForm.value.destiny_account!,
+      ammount: this.transferForm.value.quantity!,
+    });
+    if(userInfo) {
+      Swal.fire({
+        background: '#333333',
+        color: '#FFFFFF',
+        title: '¡Transferencia exitosa!',
+        icon: 'success',
+        timer: 3000,
+        showConfirmButton: false,
+      });
+      this.transferForm.reset();
+      this.userData = await this.userService.getUserData(this.user._id);
+    }
   }
 }
