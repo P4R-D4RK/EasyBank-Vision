@@ -16,12 +16,12 @@ export class UpdateUserDto {
   @IsString()
   @IsOptional()
   user_number?: string;
-  
+
   @IsNotEmpty()
   @IsString()
   @IsOptional()
   first_name?: string;
-  
+
   @IsNotEmpty()
   @IsString()
   @IsOptional()
@@ -30,13 +30,16 @@ export class UpdateUserDto {
   @IsNotEmpty()
   @IsOptional()
   debit_card?: debit_card;
-  
+
   @IsNotEmpty()
   @IsOptional()
   credit_cards?: credit_card[];
-  
+
   @IsNotEmpty()
   @MinLength(8)
   @IsOptional()
   password?: string;
+
+  @IsOptional()
+  movements?: Array<any>;
 }

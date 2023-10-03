@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Transfer } from '../interfaces/transfer.interface';
-import { _URL_MOVEMENTS } from 'src/config/config';
+import { _URL_MOVEMENTS } from 'src/app/config/config';
 
 @Injectable({
   providedIn: 'root'

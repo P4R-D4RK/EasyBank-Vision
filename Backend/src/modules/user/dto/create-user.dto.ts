@@ -15,23 +15,25 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
   user_number: string;
-  
+
   @IsNotEmpty()
   @IsString()
   first_name: string;
-  
+
   @IsNotEmpty()
   @IsString()
   last_name: string;
 
   @IsNotEmpty()
   debit_card: debit_card;
-  
+
   @IsNotEmpty()
   @IsOptional()
   credit_cards?: credit_card[];
-  
+
   @IsNotEmpty()
   @MinLength(8)
   password: string;
+
+  movements: Array<any>;
 }

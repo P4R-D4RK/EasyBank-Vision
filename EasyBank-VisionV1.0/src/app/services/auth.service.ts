@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { _URL_AUTH } from '../../config/config';
+import { _URL_AUTH } from '../config/config';
 import { UserLogin } from '../interfaces/userLogin.interface';
 
 @Injectable({
