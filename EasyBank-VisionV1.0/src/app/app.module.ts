@@ -14,6 +14,7 @@ import { SaldosComponent } from './components/saldos/saldos.component';
 import { AccountStatementsComponent } from './components/account-statements/account-statements.component';
 import { CreditCardPipe } from './pipes/credit-card.pipe';
 import { TransfersComponent } from './components/transfers/transfers.component';
+import { ServicePaymentComponent } from './components/service-payment/service-payment.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TransfersComponent } from './components/transfers/transfers.component';
     SaldosComponent,
     AccountStatementsComponent,
     CreditCardPipe,
-    TransfersComponent
+    TransfersComponent,
+    ServicePaymentComponent
   ],
   imports: [
     BrowserModule,

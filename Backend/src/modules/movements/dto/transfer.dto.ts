@@ -11,5 +11,5 @@ export class TransferDto {
 
   @IsNotEmpty()
   @IsNumber()
-  ammount: number;
+  amount: number;
 }

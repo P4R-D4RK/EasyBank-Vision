@@ -7,8 +7,8 @@ export class credit_card {
 }
 
 export class debit_card {
-    dc_number: string;
-    dc_avaliable_balance: number;
+  dc_number: string;
+  dc_avaliable_balance: number;
 }
 
 @Schema()
@@ -27,10 +27,21 @@ export class User {
 
   @Prop()
   credit_cards?: credit_card[];
-  
+
   @Prop({ required: true })
   password: string;
-}
 
+  @Prop([])
+  movements: {
+    type: [
+      {
+        ammount: number;
+        destination: string;
+        paymentReason: string;
+      },
+    ];
+    default: [];
+  };
+}
 
 export const UserSchema = SchemaFactory.createForClass(User);

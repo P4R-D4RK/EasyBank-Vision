@@ -44,6 +44,16 @@ export class UserService {
       )
       .exec();
   }
+  async findByDcNumber(dcNumber: string) {
+    return this.userModel
+      .findOne({ 'debit_card.dc_number': dcNumber }, { _id: 1 })
+      .exec();
+  }
+  async findByCcNumber(ccNumber: string) {
+    return this.userModel
+      .findOne({ 'credit_cards.cc_number': ccNumber }, {})
+      .exec();
+  }
   async updateDebitCardBalance(dc_number: string, ammount: number) {
     return this.userModel
       .findOneAndUpdate(
@@ -61,6 +71,43 @@ export class UserService {
         ],
       )
       .lean()
+      .exec();
+  }
+
+  async updateCCAvaliableCredit(cc_number: string, amount: number) {
+    return this.userModel
+      .findOneAndUpdate(
+        { 'credit_cards.cc_number': cc_number },
+        {
+          $inc: {
+            'credit_cards.$.cc_avaliable_credit': -amount,
+          },
+        },
+        { new: true },
+      )
+      .exec();
+  }
+
+  async createMovement(
+    userId: any,
+    ammount: number,
+    destination: string,
+    paymentReason: string,
+  ) {
+    return this.userModel
+      .findByIdAndUpdate(
+        { _id: userId },
+        {
+          $push: {
+            movements: {
+              ammount: ammount,
+              destination: destination,
+              paymentReason: paymentReason,
+            },
+          },
+        },
+        { new: true },
+      )
       .exec();
   }
 }

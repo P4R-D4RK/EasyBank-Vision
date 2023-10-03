@@ -105,22 +105,36 @@ export class TransfersComponent implements OnInit {
   }
 
   async transfer(): Promise<any> {
-    const userInfo = await this.movementsService.transfer({
+    const resp = await this.movementsService.transfer({
       origin: this.userData.debit_card.dc_number,
       destination: this.transferForm.value.destiny_account!,
-      ammount: this.transferForm.value.quantity!,
+      amount: this.transferForm.value.quantity!,
     });
-    if(userInfo) {
+    console.log(resp);
+    if (resp) {
+      setTimeout(() => {
+        Swal.fire({
+          background: '#333333',
+          color: '#FFFFFF',
+          title: '¡Transferencia exitosa!',
+          icon: 'success',
+          timer: 3000,
+          showConfirmButton: false,
+        });
+        this.transferForm.reset();
+      }, 500);
+      this.userData = await this.userService.getUserData(this.user._id);
+    }
+    else {
       Swal.fire({
         background: '#333333',
         color: '#FFFFFF',
-        title: '¡Transferencia exitosa!',
-        icon: 'success',
+        title: 'Oops...',
+        text: 'Ocurrió un error',
+        icon: 'error',
         timer: 3000,
         showConfirmButton: false,
       });
-      this.transferForm.reset();
-      this.userData = await this.userService.getUserData(this.user._id);
     }
   }
 }
