@@ -54,24 +54,48 @@ export class UserService {
       .findOne({ 'credit_cards.cc_number': ccNumber }, {})
       .exec();
   }
-  async updateDebitCardBalance(dc_number: string, ammount: number) {
-    return this.userModel
-      .findOneAndUpdate(
-        {
-          'debit_card.dc_number': dc_number,
-        },
-        [
+  async updateDebitCardBalance(
+    add_amount: boolean,
+    dc_number: string,
+    amount: number,
+  ) {
+    if (add_amount) {
+      return this.userModel
+        .findOneAndUpdate(
           {
-            $set: {
-              'debit_card.dc_avaliable_balance': {
-                $subtract: ['$debit_card.dc_avaliable_balance', ammount],
+            'debit_card.dc_number': dc_number,
+          },
+          [
+            {
+              $set: {
+                'debit_card.dc_avaliable_balance': {
+                  $sum: ['$debit_card.dc_avaliable_balance', amount],
+                },
               },
             },
+          ],
+        )
+        .lean()
+        .exec();
+    } else {
+      return this.userModel
+        .findOneAndUpdate(
+          {
+            'debit_card.dc_number': dc_number,
           },
-        ],
-      )
-      .lean()
-      .exec();
+          [
+            {
+              $set: {
+                'debit_card.dc_avaliable_balance': {
+                  $subtract: ['$debit_card.dc_avaliable_balance', amount],
+                },
+              },
+            },
+          ],
+        )
+        .lean()
+        .exec();
+    }
   }
 
   async updateCCAvaliableCredit(cc_number: string, amount: number) {
@@ -90,23 +114,37 @@ export class UserService {
 
   async createMovement(
     userId: any,
-    ammount: number,
+    amount: number,
     destination: string,
     paymentReason: string,
+    type: string,
   ) {
+    const now = new Date();
     return this.userModel
       .findByIdAndUpdate(
         { _id: userId },
         {
           $push: {
             movements: {
-              ammount: ammount,
-              destination: destination,
-              paymentReason: paymentReason,
+              amount,
+              destination,
+              date: now,
+              paymentReason,
+              type,
             },
           },
         },
         { new: true },
+      )
+      .exec();
+  }
+  async getMovements(userId: any) {
+    return this.userModel
+      .findById(
+        { _id: userId },
+        {
+          movements: 1,
+        },
       )
       .exec();
   }

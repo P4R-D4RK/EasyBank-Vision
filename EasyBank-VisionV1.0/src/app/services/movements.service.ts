@@ -24,4 +24,22 @@ export class MovementsService {
     });
     return data ?? [];
   }
+  
+  async getMovements(dc_number: string): Promise<any> {
+    const body = { dc_number }
+    const data = await new Promise<any>((resolve, reject) => {
+      this.http.post<any>(`${_URL_MOVEMENTS}`,body).subscribe({
+        next: (value) => {
+          if (value.error) reject(value.error);
+          else if (value.data) {
+            resolve(value.data);
+          }
+        },
+        error: (err) => reject(err),
+      });
+    });
+    return data ?? [];
+  }
+
+
 }

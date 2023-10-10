@@ -1,31 +1,68 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { TransferDto } from './dto/transfer.dto';
 import { UserService } from '../user/user.service';
 import { ServicePaymentDto } from './dto/servicePayment.dto';
+import { MovementsDto } from './dto/movements.dto';
 
 @Injectable()
 export class MovementsService {
   constructor(private userService: UserService) {}
 
+  async getMovements(dc_number: MovementsDto) {
+    const user = await this.userService.findByDcNumber(dc_number.dc_number);
+    if (user) {
+      const userMovements = await this.userService.getMovements(user._id);
+      if (userMovements) return userMovements;
+    }
+    throw new InternalServerErrorException();
+  }
+
   async transfer(transferInformation: TransferDto) {
-    const userDC = await this.userService.findByDcNumber(
+    const now = new Date();
+    const originDC = await this.userService.findByDcNumber(
       transferInformation.origin,
     );
-    const update = await this.userService.updateDebitCardBalance(
+    const destinationDC = await this.userService.findByDcNumber(
+      transferInformation.destination,
+    );
+    console.log(originDC);
+    console.log(destinationDC);
+    const updateOrigin = await this.userService.updateDebitCardBalance(
+      false,
       transferInformation.origin,
       transferInformation.amount,
     );
-    if (update) {
-      const movement = await this.userService.createMovement(
-        userDC['_id'],
+    const updateDestination = await this.userService.updateDebitCardBalance(
+      true,
+      transferInformation.destination,
+      transferInformation.amount,
+    );
+    console.log(updateOrigin);
+    console.log(updateDestination);
+    if (updateOrigin && updateDestination) {
+      const movementOrigin = await this.userService.createMovement(
+        originDC['_id'],
         transferInformation.amount,
         transferInformation.destination,
         'Transferencia',
+        'Egreso',
       );
-      console.log(movement);
-      return update;
+      const movementDestination = await this.userService.createMovement(
+        destinationDC['_id'],
+        transferInformation.amount,
+        transferInformation.origin,
+        'Transferencia',
+        'Ingreso',
+      );
+      console.log(movementOrigin);
+      console.log(movementDestination);
+      return [updateOrigin, updateDestination];
     }
-    throw new UnauthorizedException();
+    throw new InternalServerErrorException();
   }
 
   async payService(paymentInformation: ServicePaymentDto) {
@@ -34,6 +71,7 @@ export class MovementsService {
     );
     if (userDC) {
       const updateBalance = await this.userService.updateDebitCardBalance(
+        false,
         paymentInformation.cc_or_dc_number,
         paymentInformation.amount,
       );
@@ -56,6 +94,6 @@ export class MovementsService {
         return updateAvaliableCredit;
       }
     }
-    throw new UnauthorizedException();
+    throw new InternalServerErrorException();
   }
 }
