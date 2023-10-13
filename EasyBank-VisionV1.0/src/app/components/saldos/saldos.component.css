@@ -133,9 +133,30 @@ li {
 }
 
 table {
-    width: 100%;
-  }
-  
-  th.mat-sort-header-sorted {
-    color: black;
-  }
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+th.mat-sort-header-sorted {
+  color: white !important;
+  background-color: #83289d;
+}
+
+.mat-mdc-header-cell {
+  color: white !important;
+  background-color: #83289d !important;
+}
+
+.btn {
+  width: 15rem;
+  height: 5rem;
+  font-size: larger;
+}
+
+.selected {
+  font-weight: bolder;
+  background-color: #5b0b71;
+}

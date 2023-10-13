@@ -9,33 +9,21 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MovementsService } from 'src/app/services/movements.service';
 import { UserService } from 'src/app/services/user.service';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
-
 @Component({
   selector: 'app-saldos',
   templateUrl: './saldos.component.html',
   styleUrls: ['./saldos.component.css'],
 })
-export class SaldosComponent implements  AfterViewInit, OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class SaldosComponent implements AfterViewInit, OnInit {
+  movements: any[] = [];
+  displayedColumns: string[] = [
+    'date',
+    'paymentReason',
+    'destination',
+    'amount',
+  ];
+  dataSource = new MatTableDataSource(this.movements);
+  filter: string = 'All';
 
   user: UserLogin = {
     _id: '',
@@ -71,11 +59,14 @@ export class SaldosComponent implements  AfterViewInit, OnInit {
   async ngOnInit(): Promise<any> {
     this.user = this.getUser()!;
     this.userData = await this.userService.getUserData(this.user._id);
-    console.log(this.userData.debit_card.dc_number)
+    console.log(this.userData.debit_card.dc_number);
     const movements = await this.movementsService.getMovements(
       this.userData.debit_card.dc_number
     );
-    console.log(movements);
+    this.movements = movements['movements'];
+    this.dataSource = new MatTableDataSource(this.movements);
+    this.dataSource.sort = this.sort;
+    console.log(movements['movements']);
   }
 
   getUser() {
@@ -125,4 +116,25 @@ export class SaldosComponent implements  AfterViewInit, OnInit {
       console.log("Imagen pequeña presionada");
   });
   */
+
+  filterMovements(mode: string) {
+    this.filter = mode;
+    let filteredMovements: any[] = [];
+    if (mode == 'All') {
+      this.dataSource = new MatTableDataSource(this.movements);
+      this.dataSource.sort = this.sort;
+    } else {
+      if (mode == 'Incomes') {
+        filteredMovements = this.movements.filter(
+          (movement) => movement.type == 'Ingreso'
+        );
+      } else if (mode == 'Outcomes') {
+        filteredMovements = this.movements.filter(
+          (movement) => movement.type == 'Egreso'
+        );
+      }
+      this.dataSource = new MatTableDataSource(filteredMovements);
+      this.dataSource.sort = this.sort;
+    }
+  }
 }
