@@ -80,3 +80,19 @@
     position: relative;
     left: 900px;
 }
+
+.dropdown {
+    position: relative;
+    top: 10%;    /* Moverá el elemento un 10% hacia abajo respecto a su posición original */
+    left: 3%;   /* Moverá el elemento un 20% hacia la derecha respecto a su posición original */
+}
+
+.btn.btn-secondary {
+    background-color: #ffffff; /* Cambia esto al color que desees */
+    color: rgb(88, 86, 98, 0.60); /* Cambia esto al color que desees para el texto */
+}
+
+.btn.btn-secondary {
+    width: 60%;            /* El botón tomará el 50% del ancho de su contenedor */
+    height: 50%;
+}

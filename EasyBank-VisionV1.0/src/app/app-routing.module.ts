@@ -6,6 +6,7 @@ import { SaldosComponent } from './components/saldos/saldos.component';
 import { TransfersComponent } from './components/transfers/transfers.component';
 import { AccountStatementsComponent } from './components/account-statements/account-statements.component';
 import { ServicePaymentComponent } from './components/service-payment/service-payment.component';
+import { InvestmentComponent } from './components/investment/investment.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'transfers', component: TransfersComponent},
   { path: 'account-statements', component: AccountStatementsComponent},
   { path: 'service-payment', component: ServicePaymentComponent},
+  { path: 'investment', component: InvestmentComponent},
   { path: '**', redirectTo: 'login' },
 ];
 
