@@ -10,7 +10,7 @@ export interface User {
     password?: string;
 }
 
-interface credit_card {
+export interface credit_card {
     cc_number: string;
     cc_avaliable_credit: number;
     cc_total_credit: number;

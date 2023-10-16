@@ -98,17 +98,21 @@ export class UserService {
     }
   }
 
-  async updateCCAvaliableCredit(cc_number: string, amount: number) {
+  async updateCCAvaliableCredit(
+    cc_number: string,
+    amount: number,
+    add: boolean,
+  ) {
+    const updateQuery: any = {
+      $inc: {
+        'credit_cards.$.cc_avaliable_credit': add ? amount : -amount,
+      },
+    };
+
     return this.userModel
-      .findOneAndUpdate(
-        { 'credit_cards.cc_number': cc_number },
-        {
-          $inc: {
-            'credit_cards.$.cc_avaliable_credit': -amount,
-          },
-        },
-        { new: true },
-      )
+      .findOneAndUpdate({ 'credit_cards.cc_number': cc_number }, updateQuery, {
+        new: true,
+      })
       .exec();
   }
 

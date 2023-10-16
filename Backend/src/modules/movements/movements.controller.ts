@@ -3,6 +3,7 @@ import { MovementsService } from './movements.service';
 import { TransferDto } from './dto/transfer.dto';
 import { ServicePaymentDto } from './dto/servicePayment.dto';
 import { MovementsDto } from './dto/movements.dto';
+import { PayCCardDto } from './dto/payCCard.dto';
 // import { PaymentServiceDto } from './dto/update-user.dto';
 
 @Controller('movements')
@@ -20,6 +21,13 @@ export class MovementsController {
   async transfer(@Body(new ValidationPipe()) transferInfo: TransferDto) {
     return {
       data: await this.movementsService.transfer(transferInfo),
+    };
+  }
+
+  @Post('pay-ccard')
+  async payCCard(@Body(new ValidationPipe()) payCCardInfo: PayCCardDto) {
+    return {
+      data: await this.movementsService.payCCard(payCCardInfo),
     };
   }
 

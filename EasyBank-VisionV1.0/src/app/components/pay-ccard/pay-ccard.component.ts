@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/interfaces/user.interface';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { User, credit_card } from 'src/app/interfaces/user.interface';
 import { UserLogin } from 'src/app/interfaces/userLogin.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { MovementsService } from 'src/app/services/movements.service';
@@ -8,17 +9,16 @@ import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-transfers',
-  templateUrl: './transfers.component.html',
-  styleUrls: ['./transfers.component.css'],
+  selector: 'app-pay-ccard',
+  templateUrl: './pay-ccard.component.html',
+  styleUrls: ['./pay-ccard.component.css'],
 })
-export class TransfersComponent implements OnInit {
-  mode: boolean = false;
-  user: UserLogin = {
-    _id: '',
-    first_name: '',
-    last_name: '',
-  };
+export class PayCcardComponent {
+  now = new Date();
+  month: string = '';
+  paymentForm = new FormGroup({
+    amount: new FormControl(0, [Validators.required, Validators.min(1)])
+  });
   userData: User = {
     user_number: '',
     first_name: '',
@@ -30,51 +30,38 @@ export class TransfersComponent implements OnInit {
     credit_cards: [],
     password: '',
   };
-  transferForm = new FormGroup({
-    destiny_account: new FormControl('', [
-      Validators.required,
-      Validators.minLength(16),
-      Validators.maxLength(16),
-      Validators.pattern('^[0-9]*$'),
-    ]),
-    name: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    quantity: new FormControl(0, [Validators.required, Validators.min(100)]),
-  });
+  user: UserLogin = {
+    _id: '',
+    first_name: '',
+    last_name: '',
+  };
+  
   constructor(
+    public dialogRef: MatDialogRef<PayCcardComponent>,
+    @Inject(MAT_DIALOG_DATA) public card: credit_card,
     private authService: AuthService,
     private userService: UserService,
     private movementsService: MovementsService
   ) {}
 
   async ngOnInit(): Promise<any> {
+    this.month = new Intl.DateTimeFormat('es', { month: 'long' }).format(
+      this.now
+    );
     this.user = this.getUser()!;
     this.userData = await this.userService.getUserData(this.user._id);
-    this.transferForm.controls.quantity.addValidators(
-      Validators.max(this.userData.debit_card.dc_avaliable_balance)
-    );
   }
 
   getUser() {
     return this.authService.getUser();
   }
 
-  change() {
-    this.mode = !this.mode;
-  }
-
-  confirmTransfer() {
-    console.log(this.transferForm.value);
+  confirmPayment() {
     Swal.fire({
       background: '#333333',
       color: '#FFFFFF',
-      title: '¿Realizar transferencia?',
-      html:
-        '<p><strong>Destino </strong> ' +
-        this.transferForm.value.destiny_account?.toString() +
-        '</p>' +
-        '<p><strong>Cantidad </strong>$' +
-        this.transferForm.value.quantity?.toString() +
-        '</p>',
+      title: '¿Pagar tarjeta de crédito ' + '***' + this.card.cc_number.substring(12, 16) + ' ?',
+      text: 'Cantidad: ' + this.currencyPipe(this.paymentForm.value.amount!),
       icon: 'question',
       confirmButtonText: 'Confirmar',
       confirmButtonColor: '#75258B',
@@ -90,16 +77,17 @@ export class TransfersComponent implements OnInit {
       // const user = this.getUser();
       // console.log(user);
       if (result.isConfirmed) {
-        this.transfer();
+        this.payCCard();
       }
     });
   }
 
-  async transfer(): Promise<any> {
-    const resp = await this.movementsService.transfer({
-      origin: this.userData.debit_card.dc_number,
-      destination: this.transferForm.value.destiny_account!,
-      amount: this.transferForm.value.quantity!,
+
+  async payCCard(): Promise<any> {
+    const resp = await this.movementsService.payCCard({
+      dc_number: this.userData.debit_card.dc_number,
+      cc_number: this.card.cc_number!,
+      amount: this.paymentForm.value.amount!,
     });
     console.log(resp);
     if (resp) {
@@ -107,14 +95,15 @@ export class TransfersComponent implements OnInit {
         Swal.fire({
           background: '#333333',
           color: '#FFFFFF',
-          title: '¡Transferencia exitosa!',
+          title: '¡Pago de tarjeta de crédito exitoso!',
           icon: 'success',
           timer: 3000,
           showConfirmButton: false,
         });
-        this.transferForm.reset();
+        this.paymentForm.reset();
       }, 500);
       this.userData = await this.userService.getUserData(this.user._id);
+      this.dialogRef.close(true);
     }
     else {
       Swal.fire({
@@ -127,5 +116,16 @@ export class TransfersComponent implements OnInit {
         showConfirmButton: false,
       });
     }
+  }
+
+  currencyPipe(
+    value: number,
+    currencyCode: string = 'USD',
+    locale: string = 'en-US'
+  ): string {
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: currencyCode,
+    }).format(value);
   }
 }

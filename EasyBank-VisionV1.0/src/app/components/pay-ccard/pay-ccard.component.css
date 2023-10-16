@@ -1,0 +1,12 @@
+.title {
+  font-size: x-large;
+}
+
+.form-control {
+  border: 1px transparent;
+}
+
+.input-login {
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+}

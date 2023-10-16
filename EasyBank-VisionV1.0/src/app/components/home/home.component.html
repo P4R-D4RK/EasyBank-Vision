@@ -204,8 +204,8 @@
                 </p>
                 <h3 style="color: black;" class="mb-3">
                   <strong>
-                    ${{
-                      card.dc_avaliable_balance
+                    {{
+                      card.dc_avaliable_balance | currency
                     }}
                   </strong>
                 </h3>
@@ -245,43 +245,48 @@
                     <p class="mb-0">Saldo utilizado</p>
                     <h3 style="color: black">
                       <strong>
-                        ${{ card.cc_total_credit - card.cc_avaliable_credit }}
+                        {{ (card.cc_total_credit - card.cc_avaliable_credit) | currency}}
                       </strong>
                     </h3>
                   </div>
                   <div class="text-center">
                     <p class="mb-0">Crédito disponible</p>
                     <h3 style="color: black">
-                      <strong> ${{ card.cc_avaliable_credit }} </strong>
+                      <strong> {{ card.cc_avaliable_credit | currency}} </strong>
                     </h3>
                   </div>
                 </div>
                 <div
-                  class="progress mb-4 mt-2"
-                  role="progressbar"
-                  aria-label="Basic example"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
+                class="progress mb-3 mt-2"
+                role="progressbar"
+                aria-label="Basic example"
+                aria-valuenow="25"
+                aria-valuemin="0"
+                aria-valuemax="100"
                 >
-                  <div
-                    class="progress-bar"
-                    [style.width]="
-                      ((card.cc_total_credit - card.cc_avaliable_credit) /
-                        card.cc_total_credit) *
-                        100 +
-                      '%'
-                    "
-                  ></div>
-                </div>
-                <button type="button" class="btn btn-primary ins shadow">
-                  Pagar tarjeta
-                </button>
+                <div
+                class="progress-bar"
+                [style.width]="
+                ((card.cc_total_credit - card.cc_avaliable_credit) /
+                card.cc_total_credit) *
+                100 +
+                '%'
+                "
+                ></div>
               </div>
+              <div class="d-flex mb-3" style="color: black;">
+                <span>Fecha de pago: <strong>25 de {{ month }} de {{ now.getFullYear() }} </strong>
+                </span>
+
+              </div>
+              <button type="button" class="btn btn-primary ins shadow" (click)="payCCard(card)">
+                Pagar tarjeta
+              </button>
             </div>
-          </ng-template>
-        </div>
+          </div>
+        </ng-template>
       </div>
+    </div>
     </div>
     <div class="side-bar rounded-4 d-inline-block" style="text-align: center;">
       <div *ngIf="mode">

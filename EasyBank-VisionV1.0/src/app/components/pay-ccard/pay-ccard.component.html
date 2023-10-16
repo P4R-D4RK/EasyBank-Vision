@@ -1,0 +1,81 @@
+<div class="m-5">
+  <div class="d-flex align-items-center">
+    <i class="bi bi-cash-coin me-3" style="font-size: xx-large"></i>
+    <p class="title m-0">
+      Pagar tarjeta
+      <strong>
+        {{ card.cc_number | creditCard }}
+      </strong>
+    </p>
+  </div>
+  <div class="mt-4 d-flex flex-column" style="font-size: large">
+    <div class="d-flex justify-content-between mt-4">
+      <span>Fecha de pago:</span>
+      <span>
+        <strong> 25 de {{ month }} de {{ now.getFullYear() }} </strong>
+      </span>
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+      <span>Deuda total:</span>
+      <span>
+        <strong>
+          {{ card.cc_total_credit - card.cc_avaliable_credit | currency }}
+        </strong>
+      </span>
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+      <span>Pago para no generar interéses:</span>
+      <span>
+        <strong>
+          {{
+            (card.cc_total_credit - card.cc_avaliable_credit) * 0.4 | currency
+          }}
+        </strong>
+      </span>
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+      <span>Pago mínimo:</span>
+      <span>
+        <strong>
+          {{ card.cc_total_credit * 0.0125 | currency }}
+        </strong>
+      </span>
+    </div>
+  </div>
+  <div class="mt-4" style="font-size: larger">
+    <span>
+      <strong>
+        Pagar con cuenta
+        {{ userData.debit_card.dc_number | creditCard }}
+      </strong>
+    </span>
+  </div>
+  <div class="mt-2">
+    <form [formGroup]="paymentForm">
+      <div class="d-flex align-items-center">
+        <p class="m-0">Cantidad</p>
+        <div class="ms-3">
+          <span style="font-size: larger"><strong>$ </strong></span>
+          <input
+            formControlName="amount"
+            type="number"
+            style="height: min-content; width: 70%"
+            class="form-control d-inline-block input-login shadow"
+            [ngClass]="{'form-control-error': (paymentForm.controls.amount.errors?.['required'] || paymentForm.controls.amount.errors?.['min'] ) && !paymentForm.controls.amount.pristine}"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-flex justify-content-end mt-4">
+    <button
+      type="button"
+      class="btn btn-primary button-login shadow"
+      style="width: 35%"
+      [disabled]="!paymentForm.valid"
+      (click)="confirmPayment()"
+    >
+      Pagar
+    </button>
+  </div>
+</div>

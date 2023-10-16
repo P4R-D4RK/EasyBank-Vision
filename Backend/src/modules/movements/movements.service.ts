@@ -3,6 +3,7 @@ import { TransferDto } from './dto/transfer.dto';
 import { UserService } from '../user/user.service';
 import { ServicePaymentDto } from './dto/servicePayment.dto';
 import { MovementsDto } from './dto/movements.dto';
+import { PayCCardDto } from './dto/payCCard.dto';
 
 @Injectable()
 export class MovementsService {
@@ -62,6 +63,43 @@ export class MovementsService {
     throw new InternalServerErrorException();
   }
 
+  async payCCard(paymentInformation: PayCCardDto) {
+    const originDC = await this.userService.findByDcNumber(
+      paymentInformation.dc_number,
+    );
+    // const destinationCC = await this.userService.findByCcNumber(
+    //   paymentInformation.cc_number,
+    // );
+    // console.log(originDC);
+    // console.log(destinationCC);
+    const updateOrigin = await this.userService.updateDebitCardBalance(
+      false,
+      paymentInformation.dc_number,
+      paymentInformation.amount,
+    );
+    const updateDestination = await this.userService.updateCCAvaliableCredit(
+      paymentInformation.cc_number,
+      paymentInformation.amount,
+      true,
+    );
+    console.log(updateOrigin);
+    console.log(updateDestination);
+    if (updateOrigin && updateDestination) {
+      const movementOrigin = await this.userService.createMovement(
+        originDC['_id'],
+        paymentInformation.amount,
+        paymentInformation.cc_number,
+        paymentInformation.dc_number,
+        'Pago de tarjeta de crédito',
+        'Egreso',
+      );
+
+      console.log(movementOrigin);
+      return [updateOrigin, updateDestination];
+    }
+    throw new InternalServerErrorException();
+  }
+
   async payService(paymentInformation: ServicePaymentDto) {
     const userDC = await this.userService.findByDcNumber(
       paymentInformation.cc_or_dc_number,
@@ -84,6 +122,7 @@ export class MovementsService {
           await this.userService.updateCCAvaliableCredit(
             paymentInformation.cc_or_dc_number,
             paymentInformation.amount,
+            false,
           );
         if (updateAvaliableCredit) {
           return updateAvaliableCredit;

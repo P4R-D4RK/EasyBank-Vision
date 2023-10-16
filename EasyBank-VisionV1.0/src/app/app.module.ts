@@ -15,6 +15,7 @@ import { CreditCardPipe } from './pipes/credit-card.pipe';
 import { TransfersComponent } from './components/transfers/transfers.component';
 import { ServicePaymentComponent } from './components/service-payment/service-payment.component';
 import { InvestmentComponent } from './components/investment/investment.component';
+import { PayCcardComponent } from './components/pay-ccard/pay-ccard.component';
 
 //Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import {MatSelectModule} from '@angular/material/select';
     TransfersComponent,
     ServicePaymentComponent,
     InvestmentComponent,
+    PayCcardComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],
