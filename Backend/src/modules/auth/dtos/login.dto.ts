@@ -1,7 +1,6 @@
-import { IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
 
 export class LogInDto {
-
   @IsOptional()
   user_number_or_cc?: string;
 
