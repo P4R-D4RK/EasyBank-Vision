@@ -116,6 +116,7 @@ export class UserService {
     userId: any,
     amount: number,
     destination: string,
+    origin: string,
     paymentReason: string,
     type: string,
   ) {
@@ -128,6 +129,7 @@ export class UserService {
             movements: {
               amount,
               destination,
+              origin,
               date: now,
               paymentReason,
               type,

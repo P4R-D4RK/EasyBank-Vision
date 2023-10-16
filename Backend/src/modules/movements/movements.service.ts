@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  UnauthorizedException,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { TransferDto } from './dto/transfer.dto';
 import { UserService } from '../user/user.service';
 import { ServicePaymentDto } from './dto/servicePayment.dto';
@@ -22,7 +18,6 @@ export class MovementsService {
   }
 
   async transfer(transferInformation: TransferDto) {
-    const now = new Date();
     const originDC = await this.userService.findByDcNumber(
       transferInformation.origin,
     );
@@ -48,12 +43,14 @@ export class MovementsService {
         originDC['_id'],
         transferInformation.amount,
         transferInformation.destination,
+        transferInformation.origin,
         'Transferencia',
         'Egreso',
       );
       const movementDestination = await this.userService.createMovement(
         destinationDC['_id'],
         transferInformation.amount,
+        transferInformation.destination,
         transferInformation.origin,
         'Transferencia',
         'Ingreso',

@@ -1,5 +1,5 @@
 <div class="bg">
-  <div class="container d-flex justify-content-center">
+  <div class="container d-flex justify-content-center" *ngIf="!mode">
     <div
     >
       <div class="d-flex justify-content-center">
@@ -80,5 +80,71 @@
     <input class="form-check-input" type="checkbox" (change)="change()" />
     <label *ngIf="!mode">Modo simple</label>
     <label *ngIf="mode">Modo detallado</label>
+  </div>
+  <div class="container d-flex justify-content-center align-items-center" *ngIf="mode">
+    <div class="d-flex flex-column me-5" style="width: 45%;">
+      <img src="../../../assets/EBV_Logo2.png" alt="">
+      <img src="../../../assets/LOGO_AZUL.png" alt="">
+      <img src="../../../assets/EBV_Logo2.png" alt="">
+    </div>
+    <div>
+      <div style="text-align: center;" class="w-100">
+        <p class="mt-5 title d-block" style="width: 80%;">Iniciar sesión</p>
+
+      </div>
+      <div style="color: white;">
+        <form [formGroup]="userForm">
+          <div class="form-outline mt-4 ">
+            <p class="me-1 input-num" style="width: 80%;">
+              Número de cliente o tarjeta de crédito
+            </p>
+            <input
+              formControlName="user"
+              type="text"
+              style="height: min-content;"
+              class="form-control d-inline-block input-login shadow"
+              [ngClass]="{'form-control-error': userForm.controls.user.errors?.['required'] && !userForm.controls.user.pristine}"
+            />
+            <!-- <span
+              class="error-validator"
+              *ngIf="userForm.controls.user.errors?.['required'] && !userForm.controls.user.pristine"
+              >Campo requerido</span
+              > -->
+          </div>
+          <div class="form-outline mt-4 ">
+            <p class="me-1">Contraseña</p>
+            <input
+              formControlName="password"
+              type="password"
+              class="form-control d-inline-block input-login shadow"
+              [ngClass]="{'form-control-error': (userForm.controls.password.errors?.['required'] || userForm.controls.password.errors?.['minlength']) && !userForm.controls.password.pristine}"
+            />
+            <!-- <span
+                class="error-validator"
+                *ngIf="userForm.controls.password.errors?.['required'] && !userForm.controls.password.pristine; else minLengthError "
+                >Campo requerido</span
+                >
+                <ng-template #minLengthError>
+                  <span
+                  *ngIf="!userForm.controls.password.pristine && userForm.controls.password.errors?.['minlength']"
+                  class="error-validator"
+                  >Mínimo 8 carácteres</span
+                  >
+                </ng-template> -->
+          </div>
+        </form>
+      </div>
+      <div class="d-flex justify-content-start mt-5">
+        <button
+          type="button"
+          class="btn btn-primary button-login shadow"
+          [disabled]="!userForm.valid"
+          (click)="validateUser()"
+          style="width: 88%;"
+        >
+          Iniciar sesión
+        </button>
+      </div>
+    </div>
   </div>
 </div>

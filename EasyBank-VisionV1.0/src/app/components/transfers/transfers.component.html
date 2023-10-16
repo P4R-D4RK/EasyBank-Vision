@@ -44,9 +44,16 @@
       <p></p>
       <p class="title-p mt-3 d-inline-block">
         Disponible
-        <strong>{{ userData.debit_card.dc_avaliable_balance | currency }}</strong>
+        <strong>{{
+          userData.debit_card.dc_avaliable_balance | currency
+        }}</strong>
       </p>
-      <p></p>
+      <div *ngIf="mode" style="color: #75258b" class="mt-4">
+        <h4>- La cuenta destino se conforma de 16 dígitos</h4>
+        <h4>- No se permiten letras en la cuenta destino</h4>
+        <h4>- El nombre debe tener al menos 8 caracteres</h4>
+        <h4>- El monto mínimo de transferencia es de $100.00</h4>
+      </div>
     </div>
     <div class="w-50 d-inline-block bg ms-5 p-3 mt-3">
       <form [formGroup]="transferForm">
@@ -73,14 +80,15 @@
         <div>
           <p class="title-p">Cantidad</p>
           <div class="d-flex align-items-center">
-              <span class="title-p me-2">$</span><input
-                class="form-control d-inline-block input-login shadow"
-                type="number"
-                formControlName="quantity"
-                style="width: min-content;"
-                min="100"
-                [ngClass]="{'form-control-error': (transferForm.controls.quantity.errors?.['required'] || transferForm.controls.quantity.errors?.['min'] || transferForm.controls.quantity.errors?.['max']) && !transferForm.controls.quantity.pristine}"
-              />
+            <span class="title-p me-2">$</span
+            ><input
+              class="form-control d-inline-block input-login shadow"
+              type="number"
+              formControlName="quantity"
+              style="width: min-content"
+              min="100"
+              [ngClass]="{'form-control-error': (transferForm.controls.quantity.errors?.['required'] || transferForm.controls.quantity.errors?.['min'] || transferForm.controls.quantity.errors?.['max']) && !transferForm.controls.quantity.pristine}"
+            />
           </div>
         </div>
       </form>

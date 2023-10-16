@@ -160,3 +160,25 @@ th.mat-sort-header-sorted {
   font-weight: bolder;
   background-color: #5b0b71;
 }
+
+.form-check {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 25px;
+  color: black;
+  margin-top: 2rem;
+}
+
+.form-check-input:checked {
+  background-color: #83289d;
+  border-color: white;
+}
+
+.form-check-input:focus {
+  border-color: white;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(131, 40, 157, 0.25);
+}
+
+.form-switch .form-check-input:focus {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='5' fill='%238600ff' /%3e%3c/svg%3e");
+}

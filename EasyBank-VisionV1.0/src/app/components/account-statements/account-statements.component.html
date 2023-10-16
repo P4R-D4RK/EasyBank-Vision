@@ -1,31 +1,77 @@
 <div class="contenedorPrincipal">
-    Estados de Cuenta
-    <img src="../../../assets/Estadoimagen.svg" alt="">
-    <br><br>
-    <div class="contenedorSwitch">
-        <br><br>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-                Estado de cuenta actual
-            </label>
-            <div class="fecha">Última fecha de corte: XX/XX/XXXX</div>
-        </div>  
-        <div class="">
-            <br><br>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Otros estados de cuenta
-                </label>
-              </div> 
-        </div>
-        <br><br>
-        <button class="consultar">
-            Consultar
-        </button>
-        <br><br>
+  Estados de Cuenta
+  <img src="../../../assets/Estadoimagen.svg" alt="" />
+  <div class="contenedorSwitch mt-2">
+    <div class="d-flex justify-content-center">
+      <mat-form-field style="width: 20%">
+        <mat-label>Cuenta</mat-label>
+        <mat-select [(value)]="selectedCard" name="Selecciona una opción">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let card of cards" [value]="card.value">
+            {{ card.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <br><br>
-    Modo simple aqui
+    <div
+      *ngIf="selectedCard == undefined || selectedCard == ''"
+      class="text-center mt-3"
+    >
+      <p style="font-weight: bolder; font-size: 2rem">Seleccione una tarjeta</p>
+    </div>
+    <div *ngIf="selectedCard != undefined && selectedCard != ''" class="mt-4">
+      <div class="d-flex justify-content-evenly">
+        <p style="font-weight: bolder; font-size: 2rem; width: 13.5rem">
+          Periodo / Año
+        </p>
+        <p style="font-weight: bolder; font-size: 2rem; width: 24rem">
+          Archivo para descargar
+        </p>
+      </div>
+      <div
+        *ngFor="let item of accountStatements; let i = index"
+        class="d-flex align-items-center justify-content-evenly"
+      >
+        <p
+          style="
+            font-size: 1.2rem;
+            color: black;
+            font-weight: 400;
+            margin: 0;
+            width: 20rem;
+          "
+        >
+          {{ (months[i].name | titlecase) + ", " + now.getFullYear() }}
+        </p>
+        <div style="width: 10rem">
+          <i
+            class="bi bi-file-earmark-pdf-fill"
+            style="font-size: larger; cursor: pointer"
+            (click)="generatePDF(months[i])"
+          ></i>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="mode && selectedCard != undefined && selectedCard != ''"
+      style="text-align: center"
+      class="mt-5"
+    >
+      <h3>
+        <strong>
+          Haz clic en el icono de PDF para descargar el estado de cuenta
+        </strong>
+      </h3>
+      <h5>
+        Recuerda que si no tienes movimientos en el rango de un mes no puedes
+        descargar el estado de cuenta de ese mes
+      </h5>
+    </div>
+  </div>
+
+  <div class="form-check form-switch" style="z-index: -1">
+    <input class="form-check-input" type="checkbox" (change)="change()" />
+    <label *ngIf="!mode">Modo simple</label>
+    <label *ngIf="mode">Modo detallado</label>
+  </div>
 </div>

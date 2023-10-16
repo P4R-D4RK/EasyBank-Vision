@@ -15,10 +15,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./saldos.component.css'],
 })
 export class SaldosComponent implements AfterViewInit, OnInit {
+  mode: boolean = false;
   movements: any[] = [];
   displayedColumns: string[] = [
     'date',
     'paymentReason',
+    'origin',
     'destination',
     'amount',
   ];
@@ -136,5 +138,9 @@ export class SaldosComponent implements AfterViewInit, OnInit {
       this.dataSource = new MatTableDataSource(filteredMovements);
       this.dataSource.sort = this.sort;
     }
+  }
+
+  change() {
+    this.mode = !this.mode;
   }
 }
