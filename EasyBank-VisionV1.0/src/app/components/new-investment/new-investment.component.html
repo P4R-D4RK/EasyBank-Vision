@@ -1,0 +1,29 @@
+<div class="m-5">
+  <h3>Nueva Inversión</h3>
+  <div class="mt-4">
+    <form [formGroup]="investmentForm">
+        <div class="d-flex align-items-center">
+            <span class="me-3">Cantidad</span
+            ><input
+              type="number"
+              min="100"
+              step="0.1"
+              class="form-control mt-2"
+              placeholder="Cantidad minima $100.00"
+              formControlName="amount"
+            />
+          </div><div class="mt-3">Saldo disponible $14,000.00</div>
+          <div class="mt-4 d-flex align-items-center">
+            <span class="me-4">Plazo</span
+            ><mat-form-field>
+              <mat-select formControlName = "duration">
+                <mat-option *ngFor="let duration of durations" [value]="duration.value">
+                  {{duration.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+    </form>
+    <button class="btn" (click)="createInvestment()">Crear Inversión</button>
+  </div>
+</div>

@@ -4,23 +4,22 @@
         Inversiones
     </div>
     <div class = subContainer>
-        <button class="nuevaInversion">
+        <div class="balance">
+            $14,000.00
+        </div>
+        <div class="balanceMessage">Saldo Actual</div>
+        <div class="dailyInvBalance">$12.17</div>
+        <div class="dailyInv">Rendimiento diario</div>
+        <button class="nuevaInversion" (click)="newInvestment()">
             Nueva inversión
         </button>
-        <div class = subTitle>Inversiones Actuales</div>
-            <div class = dineroInversion>$950.00</div>
-            <img src="../../../assets/stocksss.svg" alt="">
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-6">
-                    <div class = textContainer>
-                        <div style="color: #585662; font-size: 20px; font-family: Inter; font-weight: 600; word-wrap: break-word">Ventajas</div>
-                        <br>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur optio, exercitationem, tenetur laboriosam repudiandae culpa illo, nihil quidem asperiores doloremque tempora. Asperiores, doloribus. Ab doloremque aspernatur autem quibusdam nisi atque.
-                    </div>
-                </div>
+        <div class = "subTitle">Inversiones Actuales</div>
+                <div *ngFor="let item of investments; let i = index" class="mt-5 me-5 ">
+                    <span class="currentInvestments">{{item.name + ' ' + i}}</span>
             </div>
-        </div>
+        <div class="historial">Historial de inversiones<div>12/09/2022</div><div>08/04/2022</div><div>01/11/2022</div></div>
+        
+            <div class="totalBalanceAfter">Total al finalizar inversiones: $16,371.34</div>
     </div>
     <br><br>
     <p>Modo simple aqui</p>

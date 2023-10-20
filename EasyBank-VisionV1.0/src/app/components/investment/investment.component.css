@@ -22,8 +22,8 @@
 .subTitle {
     color: black;
     position: relative;
-    left: 10%;
-    top: 5%;
+    left: 4%;
+    top: 1%;
     font-size: 25px;
     font-family: Inter;
     font-weight: 400;
@@ -53,22 +53,15 @@
     border-top-right-radius: 10px
 }
 
-img {
-    position: relative;
-    left: 70%;
-    width: 250px;
-    height: 250px;
-}
-
 .nuevaInversion {
-
     position: relative;
-    left: 66%;
-    top: 80%;
+    left: 65%;
+    top: 64%;
     width: 30%; 
     height: 10%; 
     background: #75258B; 
     border-radius: 10px;
+    border-color: #D9D9D9;
     color: white;
     font-size: 20px;
     font-family: Inter;
@@ -85,4 +78,56 @@ img {
     font-family: Inter;
     font-weight: 700;
     word-wrap: break-word;
+}
+
+.balance {
+    font-size: 24px;
+    position: relative;
+    top: 10%;
+    left: 4%;
+}
+
+.balanceMessage {
+    position: relative;
+    top: 10%;
+    left: 4%;
+    font-size: 16px;
+}
+
+.currentInvestments {
+    position: relative;
+    left: 4%;
+    color: #ffffff;
+    background: #75258B;
+    padding: 1%;
+    border-top-left-radius: 10%; 
+    border-top-right-radius: 10%;
+}
+
+.dailyInv {
+    position: relative;
+    font-size: 16px;
+    left: 40%;
+}
+
+.dailyInvBalance {
+    position: relative;
+    left: 40%;
+    font-size: 24px;
+}
+
+.totalBalanceAfter {
+    position: relative;
+    top: -10%;
+    left: 4%;
+    font-size: 20px;
+}
+
+.historial {
+    position: relative;
+    top: -45%;
+    left: 40%;
+    font-size: 18px;
+    word-wrap: break-word;
+    color: black;
 }
