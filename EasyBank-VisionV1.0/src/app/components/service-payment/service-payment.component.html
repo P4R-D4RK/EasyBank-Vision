@@ -20,7 +20,9 @@
   <div class="bg w-100 mt-3 p-5 d-inline-block" style="height: max-content">
     <div class="d-flex justify-content-between">
       <button
+      
         class="btn btn-primary align-items-center d-flex flex-column"
+        (click)="aguaPayment()"
         style="width: 18%"
       >
         <svg
@@ -41,7 +43,7 @@
         </svg>
         <h3 class="mt-4">Agua</h3>
       </button>
-      <button class="btn btn-primary" style="width: 18%">
+      <button class="btn btn-primary" style="width: 18%" (click)="aguaPayment()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="84"
@@ -73,7 +75,7 @@
         </svg>
         <h3 class="mt-4">Electricidad</h3>
       </button>
-      <button class="btn btn-primary" style="width: 18%">
+      <button class="btn btn-primary" style="width: 18%" (click)="aguaPayment()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="142"
@@ -103,7 +105,7 @@
         </svg>
         <h3 class="mt-4">Cable</h3>
       </button>
-      <button class="btn btn-primary" style="width: 18%">
+      <button class="btn btn-primary" style="width: 18%" (click)="aguaPayment()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="87"
@@ -134,7 +136,7 @@
     </div>
     <div class="mt-4 d-flex">
       <div class="w-50 d-flex justify-content-between">
-        <button class="btn btn-primary" style="width: 36%">
+        <button class="btn btn-primary" style="width: 36%" (click)="aguaPayment()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="116"
@@ -167,6 +169,7 @@
         <button
           class="btn btn-primary"
           style="width: 36%; margin-right: 3.5rem"
+          (click)="aguaPayment()"
         >
           <svg
             class="mt-4"

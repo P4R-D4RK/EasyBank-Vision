@@ -1,4 +1,4 @@
-<div class = mainContainer>
+<div class = "mainContainer p-3">
     <br>
     <div class = title>
         Inversiones
@@ -21,6 +21,9 @@
         
             <div class="totalBalanceAfter">Total al finalizar inversiones: $16,371.34</div>
     </div>
-    <br><br>
-    <p>Modo simple aqui</p>
+    <div class="form-check form-switch switch" style="z-index: -1">
+        <input class="form-check-input" type="checkbox" (change)="change()" />
+        <label *ngIf="!mode">Modo simple</label>
+        <label *ngIf="mode">Modo detallado</label>
+      </div>
 </div>

@@ -25,6 +25,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NewInvestmentComponent } from './components/new-investment/new-investment.component';
+import { AguaPaymentComponent } from './components/agua-payment/agua-payment.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NewInvestmentComponent } from './components/new-investment/new-investme
     ServicePaymentComponent,
     InvestmentComponent,
     PayCcardComponent,
-    NewInvestmentComponent
+    NewInvestmentComponent,
+    AguaPaymentComponent
   ],
   imports: [
     BrowserModule,

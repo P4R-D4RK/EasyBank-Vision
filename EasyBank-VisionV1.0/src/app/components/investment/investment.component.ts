@@ -13,7 +13,7 @@ export class InvestmentComponent {
     { name: '$4,000 a un plazo de:' },
     { name: '$5,550 a un plazo de:' },
   ];
-
+  mode: boolean = false
   constructor(public dialog: MatDialog) {}
 
   newInvestment() {
@@ -26,5 +26,9 @@ export class InvestmentComponent {
         console.log(true);
       }
     });
+  }
+
+  change() {
+    this.mode = !this.mode;
   }
 }
