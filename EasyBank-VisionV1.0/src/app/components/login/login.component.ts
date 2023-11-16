@@ -33,7 +33,7 @@ export class LoginComponent {
 
   async validateUser() {
     const foundUser = await this.authService.login(this.userForm.value.user!, this.userForm.value.password!)
-    if (foundUser) {
+    if (!foundUser.error) {
       const user = this.getUser();
       Swal.fire({
         background: '#333333',
@@ -45,14 +45,14 @@ export class LoginComponent {
         showConfirmButton: false,
       });
       this.router.navigate(['/home']);
-
+      
     } else {
       Swal.fire({
         background: '#333333',
         color: '#FFFFFF',
         title: 'Oops...',
         text: 'Usuario y/o contraseña incorrecto(s)',
-        icon: 'error',
+        icon: 'warning',
         timer: 3000,
         showConfirmButton: false,
       });

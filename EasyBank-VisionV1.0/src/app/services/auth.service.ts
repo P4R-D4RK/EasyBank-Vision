@@ -39,14 +39,14 @@ export class AuthService {
     const data = await new Promise<any>((resolve, reject) => {
       this.http.post<any>(`${_URL_AUTH}/log-in`, body).subscribe({
         next: (value) => {
-          if (value.error) reject(value.error);
+          if (value.error) resolve(undefined);
           else if (value.data) {
             console.log(value.data);
             this.setUser(value.data);
             resolve(value.data);
           }
         },
-        error: (err) => reject(err),
+        error: (err) => resolve(err),
       });
     });
     return data ?? [];

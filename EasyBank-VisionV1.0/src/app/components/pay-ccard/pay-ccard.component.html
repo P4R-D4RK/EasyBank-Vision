@@ -72,7 +72,10 @@
       type="button"
       class="btn btn-primary button-login shadow"
       style="width: 35%"
-      [disabled]="!paymentForm.valid"
+      [disabled]="
+        !paymentForm.valid ||
+        card.cc_total_credit - card.cc_avaliable_credit <= 0
+      "
       (click)="confirmPayment()"
     >
       Pagar

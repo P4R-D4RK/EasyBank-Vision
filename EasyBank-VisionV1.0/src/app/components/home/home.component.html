@@ -275,11 +275,11 @@
                 ></div>
               </div>
               <div class="d-flex mb-3" style="color: black;">
-                <span>Fecha de pago: <strong>25 de {{ month }} de {{ now.getFullYear() }} </strong>
+                <span>Fecha de pago: <strong>28 de {{ month }} de {{ now.getFullYear() }} </strong>
                 </span>
 
               </div>
-              <button type="button" class="btn btn-primary ins shadow" (click)="payCCard(card)">
+              <button type="button" class="btn btn-primary ins shadow" (click)="payCCard(card)" [disabled]="card.cc_total_credit - card.cc_avaliable_credit <= 0">
                 Pagar tarjeta
               </button>
             </div>
